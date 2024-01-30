@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages {
+        stage('Импортирование groovy файлов') {
+            steps {
+                script {
+                    KeyCloakFunctions = load 'src/groovy/KeyCloakFunctions.groovy'
+                    Utils = load 'src/groovy/Utils.groovy'
+                    HTTPHandler = load 'src/groovy/HTTPHandler.groovy'
+                }
+            }
+        }
+        stage('Действие с пользователем') {
+            steps {
+                script {
+                    def token = KeyCloakFunctions.initToken("url:port", "admin", "admin")
+                    echo token
+                    KeyCloakFunctions.createUser("url:port", "admin", token)
+                }
+            }
+        }
+    }
+}
