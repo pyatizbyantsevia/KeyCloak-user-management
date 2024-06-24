@@ -6,9 +6,7 @@ Boolean isUserExisted
 List<String> rolesToAssignee = []
 
 pipeline {
-    agent {
-        label 'label'
-    }
+    agent any
     parameters {
         choice(
             name: 'STAND',
