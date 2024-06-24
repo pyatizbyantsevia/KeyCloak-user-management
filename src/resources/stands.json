@@ -1,7 +1,7 @@
 {
   "first": {
     "keycloak": {
-      "url": "http://keycloak:8081",
+      "url": "http://keycloak:8080",
       "some_client_id у которого брать назначаемые роли": ""
     }
   }
