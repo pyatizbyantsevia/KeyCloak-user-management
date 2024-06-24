@@ -1,4 +1,4 @@
-List<String> stands = [ "stand_name_from_stands.json" ]
+List<String> stands = [ "first" ]
 def currentStand
 
 String token

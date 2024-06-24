@@ -1,5 +1,5 @@
 {
-  "stand_name": {
+  "first": {
     "keycloak": {
       "url": "https://fqdn:port",
       "some_client_id у которого брать назначаемые роли": ""
