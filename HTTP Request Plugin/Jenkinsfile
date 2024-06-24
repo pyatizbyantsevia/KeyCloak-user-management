@@ -37,6 +37,7 @@ pipeline {
     options {
         ansiColor('xterm')
         timestamps()
+        disableConcurrentBuilds()
     }
     stages {
         stage('Инициализация пайплайна') {
