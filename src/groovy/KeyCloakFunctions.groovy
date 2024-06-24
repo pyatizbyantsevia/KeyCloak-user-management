@@ -11,7 +11,7 @@ import groovy.json.JsonOutput
  */
 String initToken(JSONObject currentStand, String username, String password) {
 
-    def fullUrl = "${currentStand.keycloak.url}/auth/realms/master/protocol/openid-connect/token"
+    def fullUrl = "${currentStand.keycloak.url}/realms/master/protocol/openid-connect/token"
 
     def body = [
         "grant_type":"password",
@@ -49,7 +49,7 @@ String initToken(JSONObject currentStand, String username, String password) {
  */
 String getUserByUsername(JSONObject currentStand, String username, String token) {
 
-    def fullUrl = "${currentStand.keycloak.url}/auth/admin/realms/{realm}/users"
+    def fullUrl = "${currentStand.keycloak.url}/admin/realms/{realm}/users"
 
     def body = [
         "exact":"true",
@@ -90,7 +90,7 @@ String getUserByUsername(JSONObject currentStand, String username, String token)
  */
 void createUser(JSONObject currentStand, String username, String password, String token) {
 
-    def fullUrl = "${currentStand.keycloak.url}/auth/realms/{realm}/platform/user-scim-attributes/Users"
+    def fullUrl = "${currentStand.keycloak.url}/realms/{realm}/platform/user-scim-attributes/Users"
 
     def httpResponse = httpRequest(
                         customHeaders: [[name: 'Content-Type', value: 'application/json'],
@@ -118,7 +118,7 @@ void createUser(JSONObject currentStand, String username, String password, Strin
  */
 String getAllClientRoles(JSONObject currentStand, String token) {
 
-    def fullUrl = "${currentStand.keycloak.url}/auth/admin/realms/{realm}/clients/${currentStand.keycloak.client_id у которого брать назначаемые роли}/roles"
+    def fullUrl = "${currentStand.keycloak.url}/admin/realms/{realm}/clients/${currentStand.keycloak.client_id у которого брать назначаемые роли}/roles"
 
     def httpResponse = httpRequest(
                         customHeaders: [[name: 'Content-Type', value: 'application/json'],
@@ -171,7 +171,7 @@ void mapRolesToUser(JSONObject currentStand, String username, List<String> roles
  */
 void mapRoleToUser(JSONObject currentStand, String userId, String roleId, String rolename, String token) {
 
-    def fullUrl = "${currentStand.keycloak.url}/auth/realms/{realm}/platform/add-client-role/${userId}?client=${currentStand.keycloak.client_id у которого брать назначаемые роли}"
+    def fullUrl = "${currentStand.keycloak.url}/realms/{realm}/platform/add-client-role/${userId}?client=${currentStand.keycloak.client_id у которого брать назначаемые роли}"
 
     def body = "{\"role\":[{\"id\":\"${roleId}\",\"name\":\"${rolename}\"}]}"
 
